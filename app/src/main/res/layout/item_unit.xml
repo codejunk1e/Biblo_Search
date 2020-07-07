@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/book_image"
+        android:layout_width="128dp"
+        android:layout_height="192dp"
+        android:contentDescription="@string/book_image_cover"
+        android:src="@drawable/harry_potter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/book_title"
+        style="@style/textStyleBold"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:maxLines="4"
+        android:gravity="center"
+        android:text="Harry Potter and the Sorcerer's Stone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/book_image"
+        app:layout_constraintStart_toStartOf="@+id/book_image"
+        app:layout_constraintTop_toBottomOf="@+id/book_image"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

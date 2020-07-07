@@ -1,0 +1,2 @@
+rootProject.name = "Biblo Search"
+include ':app'

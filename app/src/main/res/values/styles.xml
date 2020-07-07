@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="textStyleMedium" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/secondary_text</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+
+    <style name="textStyleSmall" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="textStyleBold" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textSize">21sp</item>
+    </style>
+
+
+></resources>
