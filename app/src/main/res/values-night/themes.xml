@@ -26,4 +26,9 @@
         <item name="android:divider">@color/divider</item>
 
     </style>
+
+    <style name="ThemeOverlay.BibloSearch.AppWidgetContainer" parent="">
+        <item name="appWidgetBackgroundColor">@color/light_blue_900</item>
+        <item name="appWidgetTextColor">@color/light_blue_200</item>
+    </style>
 </resources>

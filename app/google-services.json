@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "480093745854",
+    "firebase_url": "https://books-api-282512.firebaseio.com",
+    "project_id": "books-api-282512",
+    "storage_bucket": "books-api-282512.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480093745854:android:dfe046cbfd6ef60095a4ef",
+        "android_client_info": {
+          "package_name": "com.robin.biblosearch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480093745854-kvnulahgh65gn2pnaom4f07rsopl2i1l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVmykhnnm7sglIDCxaNrfCl4xDwc9nnXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480093745854-kvnulahgh65gn2pnaom4f07rsopl2i1l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

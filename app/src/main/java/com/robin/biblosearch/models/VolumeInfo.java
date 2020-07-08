@@ -1,21 +1,42 @@
 package com.robin.biblosearch.models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "recent_book_table")
 public class VolumeInfo implements Parcelable {
+
+    @PrimaryKey
+    @NonNull
+    private String id;
+
+    @ColumnInfo(name = "updated_at")
+    private Date updatedAt;
+
+    private String thumbnail;
+
+    private Boolean favourite;
 
     @SerializedName("title")
     @Expose
     private String title;
     @SerializedName("authors")
     @Expose
-    private List<String> authors = new ArrayList<String>();
+    private ArrayList<String> authors = new ArrayList<String>();
     @SerializedName("publisher")
     @Expose
     private String publisher;
@@ -27,9 +48,11 @@ public class VolumeInfo implements Parcelable {
     private String description;
     @SerializedName("industryIdentifiers")
     @Expose
+    @Ignore
     private List<IndustryIdentifier> industryIdentifiers = new ArrayList<IndustryIdentifier>();
     @SerializedName("readingModes")
     @Expose
+    @Ignore
     private ReadingModes readingModes;
     @SerializedName("pageCount")
     @Expose
@@ -39,10 +62,11 @@ public class VolumeInfo implements Parcelable {
     private String printType;
     @SerializedName("categories")
     @Expose
+    @Ignore
     private List<String> categories = new ArrayList<String>();
     @SerializedName("averageRating")
     @Expose
-    private Integer averageRating;
+    private Double averageRating;
     @SerializedName("ratingsCount")
     @Expose
     private Integer ratingsCount;
@@ -57,9 +81,11 @@ public class VolumeInfo implements Parcelable {
     private String contentVersion;
     @SerializedName("panelizationSummary")
     @Expose
+    @Ignore
     private PanelizationSummary panelizationSummary;
     @SerializedName("imageLinks")
     @Expose
+    @Ignore
     private ImageLinks imageLinks;
     @SerializedName("language")
     @Expose
@@ -103,7 +129,7 @@ public class VolumeInfo implements Parcelable {
         this.pageCount = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.printType = ((String) in.readValue((String.class.getClassLoader())));
         in.readList(this.categories, (java.lang.String.class.getClassLoader()));
-        this.averageRating = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.averageRating = ((Double) in.readValue((Integer.class.getClassLoader())));
         this.ratingsCount = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.maturityRating = ((String) in.readValue((String.class.getClassLoader())));
         this.allowAnonLogging = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
@@ -115,6 +141,11 @@ public class VolumeInfo implements Parcelable {
         this.infoLink = ((String) in.readValue((String.class.getClassLoader())));
         this.canonicalVolumeLink = ((String) in.readValue((String.class.getClassLoader())));
         this.subtitle = ((String) in.readValue((String.class.getClassLoader())));
+        this.id = ((String) in.readValue((String.class.getClassLoader())));
+        this.updatedAt = ((Date) in.readValue((Date.class.getClassLoader())));
+        this.thumbnail = ((String) in.readValue((String.class.getClassLoader())));
+        this.favourite = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+
     }
 
     public VolumeInfo() {
@@ -128,12 +159,31 @@ public class VolumeInfo implements Parcelable {
         this.title = title;
     }
 
-    public List<String> getAuthors() {
+    public ArrayList<String> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<String> authors) {
-        this.authors = authors;
+    public String getAuthorsInString(){
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < authors.size(); i++) {
+            builder.append(authors.get(i));
+            if (i != authors.size() - 1){
+                builder.append(", ");
+            }
+        }
+        return builder.toString();
+    }
+
+    public List<String> setAuthorstoList(String authors){
+        String[] elements = authors.split(",");
+        List<String> fixedLenghtList = Arrays.asList(elements);
+        return new ArrayList<String>(fixedLenghtList);
+    }
+
+
+    public void setAuthors(ArrayList<String> authors) {
+        this.authors =  authors;
     }
 
     public String getPublisher() {
@@ -200,11 +250,11 @@ public class VolumeInfo implements Parcelable {
         this.categories = categories;
     }
 
-    public Integer getAverageRating() {
+    public Double getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(Integer averageRating) {
+    public void setAverageRating(Double averageRating) {
         this.averageRating = averageRating;
     }
 
@@ -296,6 +346,41 @@ public class VolumeInfo implements Parcelable {
         this.subtitle = subtitle;
     }
 
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+
+    @NonNull
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@NonNull String id) {
+        this.id = id;
+    }
+
+    public Boolean getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(Boolean favourite) {
+        this.favourite = favourite;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(title);
         dest.writeList(authors);
@@ -319,6 +404,10 @@ public class VolumeInfo implements Parcelable {
         dest.writeValue(infoLink);
         dest.writeValue(canonicalVolumeLink);
         dest.writeValue(subtitle);
+        dest.writeValue(id);
+        dest.writeValue(updatedAt);
+        dest.writeValue(thumbnail);
+        dest.writeValue(favourite);
     }
 
     public int describeContents() {

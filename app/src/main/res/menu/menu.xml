@@ -8,10 +8,4 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:icon="@drawable/ic_search"/>
 
-    <item android:title="@string/settings"
-        android:id="@+id/sction_settings"
-        app:showAsAction="never"
-        android:icon="@drawable/ic_search"/>
-
-
 </menu>

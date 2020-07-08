@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.robin.biblosearch">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,19 +12,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BibloSearch">
-        <activity android:name=".views.SearchActivity">
+
+        <meta-data
+            tools:replace="android:value"
+            android:name="com.google.android.gms.version"
+            android:value="12451000" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1703507332859020~9336941222"/>
+
+        <receiver android:name=".widget.FavBooksWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/fav_books_widget_info" />
+        </receiver>
+
+        <service android:name=".widget.FavBookService" />
+
+        <service
+            android:name=".widget.GridWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <activity android:name=".views.SearchActivity" android:parentActivityName=".views.MainActivity"/>
+        <activity android:name=".views.BookDetailsActivity" />
+        <activity android:name=".views.RecentsFavouritesActivity" android:parentActivityName=".views.MainActivity"/>
+        <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".views.BookDetailsActivity">
-
-        </activity>
-        <activity android:name=".views.RecentsFavouritesActivity" />
-        <activity android:name=".views.MainActivity">
-
         </activity>
     </application>
 

@@ -12,6 +12,7 @@ public class ImageLinks implements Parcelable
     @SerializedName("smallThumbnail")
     @Expose
     private String smallThumbnail;
+
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;

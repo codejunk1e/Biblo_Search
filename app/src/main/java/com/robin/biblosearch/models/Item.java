@@ -3,9 +3,14 @@ package com.robin.biblosearch.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 public class Item implements Parcelable
 {
 
@@ -14,6 +19,8 @@ public class Item implements Parcelable
     private String kind;
     @SerializedName("id")
     @Expose
+    @PrimaryKey
+    @NonNull
     private String id;
     @SerializedName("etag")
     @Expose
@@ -26,13 +33,19 @@ public class Item implements Parcelable
     private VolumeInfo volumeInfo;
     @SerializedName("saleInfo")
     @Expose
+    @Ignore
     private SaleInfo saleInfo;
     @SerializedName("accessInfo")
     @Expose
+    @Ignore
     private AccessInfo accessInfo;
     @SerializedName("searchInfo")
     @Expose
+    @Ignore
     private SearchInfo searchInfo;
+
+    private Boolean isFavourite;
+
     public final static Parcelable.Creator<Item> CREATOR = new Creator<Item>() {
 
 
@@ -59,6 +72,7 @@ public class Item implements Parcelable
         this.saleInfo = ((SaleInfo) in.readValue((SaleInfo.class.getClassLoader())));
         this.accessInfo = ((AccessInfo) in.readValue((AccessInfo.class.getClassLoader())));
         this.searchInfo = ((SearchInfo) in.readValue((SearchInfo.class.getClassLoader())));
+        this.isFavourite = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
     }
 
     public Item() {
@@ -128,6 +142,14 @@ public class Item implements Parcelable
         this.searchInfo = searchInfo;
     }
 
+    public Boolean getFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(Boolean favourite) {
+        isFavourite = favourite;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(kind);
         dest.writeValue(id);
@@ -137,6 +159,7 @@ public class Item implements Parcelable
         dest.writeValue(saleInfo);
         dest.writeValue(accessInfo);
         dest.writeValue(searchInfo);
+        dest.writeValue(isFavourite);
     }
 
     public int describeContents() {

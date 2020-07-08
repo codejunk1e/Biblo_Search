@@ -13,4 +13,8 @@
     <string name="book_image_cover">book image cover</string>
     <string name="add_to_favourites">Add to favourites</string>
     <string name="read_preview">Read Preview</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="empty_view_text">Favourites is empty</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

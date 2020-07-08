@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.BookDetailsActivity">
 
@@ -21,8 +22,8 @@
 
         </ScrollView>
 
-        <View
-            android:id="@+id/adView"
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/details_adView"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/black"
@@ -30,16 +31,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/nestedScrollView"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="1.0"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id"/>
 
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/fab_favourite"
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="80dp"
         android:layout_marginEnd="16dp"
-        android:onClick="addToFavourites"
+        android:onClick="fabClicked"
         android:backgroundTint="@color/accent"
         android:contentDescription="@string/add_to_favourites"
         android:src="@drawable/ic__star_filled" />

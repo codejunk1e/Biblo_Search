@@ -16,12 +16,12 @@ import com.robin.biblosearch.models.VolumeInfo;
 
 import java.util.List;
 
-public class VolumeAdapter extends RecyclerView.Adapter<VolumeAdapter.ViewHolder> {
+public class TruncatedVolumeAdapter extends RecyclerView.Adapter<TruncatedVolumeAdapter.ViewHolder> {
     private final Context context;
     private List<VolumeInfo> items;
     private OncClickLister clickLister;
 
-    public VolumeAdapter(List<VolumeInfo> items, Context context, OncClickLister clickLister) {
+    public TruncatedVolumeAdapter(List<VolumeInfo> items, Context context, OncClickLister clickLister) {
         this.items = items;
         this.context = context;
         this.clickLister = clickLister;
@@ -50,7 +50,12 @@ public class VolumeAdapter extends RecyclerView.Adapter<VolumeAdapter.ViewHolder
         if (items == null) {
             return 0;
         }
-        return items.size();
+
+        if (items.size() < 4){
+            return items.size();
+        }else {
+            return 4;
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

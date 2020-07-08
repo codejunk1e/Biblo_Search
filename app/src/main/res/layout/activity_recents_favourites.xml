@@ -7,7 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".views.RecentsFavouritesActivity">
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/recents_fav_load_progress"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/recents_fav_recyclerview"
+        app:layout_constraintStart_toStartOf="@+id/recents_fav_recyclerview"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recents_fav_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_unit"

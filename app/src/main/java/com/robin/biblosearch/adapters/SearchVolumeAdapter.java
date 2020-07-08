@@ -10,18 +10,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.robin.biblosearch.R;
+import com.robin.biblosearch.models.Item;
 import com.robin.biblosearch.models.VolumeInfo;
 
 import java.util.List;
 
 public class SearchVolumeAdapter extends RecyclerView.Adapter<SearchVolumeAdapter.ViewHolder> {
     private final Context context;
-    private List<VolumeInfo> items;
+    private List<Item> items;
+    private OncClickLister lister;
 
-    public SearchVolumeAdapter(List<VolumeInfo> items, Context context) {
+    public SearchVolumeAdapter(List<Item> items, Context context, OncClickLister lister) {
         this.items = items;
         this.context = context;
+        this.lister = lister;
     }
 
     @NonNull
@@ -33,7 +37,7 @@ public class SearchVolumeAdapter extends RecyclerView.Adapter<SearchVolumeAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        VolumeInfo item = items.get(position);
+        Item item = items.get(position);
         holder.bind(item, position);
     }
 
@@ -52,14 +56,29 @@ public class SearchVolumeAdapter extends RecyclerView.Adapter<SearchVolumeAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            bookImage = itemView.findViewById(R.id.book_image);
-            bookTitle = itemView.findViewById(R.id.book_title);
-            bookTitle = itemView.findViewById(R.id.book_subtitle);
+            bookImage = itemView.findViewById(R.id.search_book_image);
+            bookTitle = itemView.findViewById(R.id.search_book_title);
+            bookSubTitile = itemView.findViewById(R.id.search_book_subtitle);
 
         }
 
-        public void bind(VolumeInfo item, int position) {
-            //TODO Implement the bind method wth Item class
+        public void bind(Item item, int position) {
+            if (item.getVolumeInfo().getImageLinks() != null) {
+                Glide.with(context)
+                        .load(item.getVolumeInfo().getImageLinks().getThumbnail())
+                        .override(128,192)
+                        .error(R.drawable.default_image)
+                        .into(bookImage);
+            }
+            bookTitle.setText(item.getVolumeInfo().getTitle());
+            bookSubTitile.setText(item.getVolumeInfo().getSubtitle());
+
+            itemView.setOnClickListener(v -> {
+                lister.onClickSearchItem(position);
+            });
         }
+    }
+    public interface OncClickLister{
+        public void onClickSearchItem(int position);
     }
 }

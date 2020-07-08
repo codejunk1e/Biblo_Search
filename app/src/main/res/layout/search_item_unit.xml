@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/book_image"
+            android:id="@+id/search_book_image"
             android:layout_width="128dp"
             android:layout_height="192dp"
             android:layout_marginStart="8dp"
@@ -30,34 +30,38 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/book_title"
-            style="@style/textStyleBold"
+            android:id="@+id/search_book_title"
+            style="@style/textStyleMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:textStyle="normal"
+            android:fontFamily="sans-serif-medium"
             android:maxLines="4"
-            android:text="Harry Potter and the Sorcerer's Stone"
-            app:layout_constraintBottom_toBottomOf="@+id/book_image"
+            android:textColor="@color/primary_text"
+            tools:text="Harry Potter and the Sorcerer's Stone"
+            app:layout_constraintBottom_toBottomOf="@+id/search_book_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/book_image"
-            app:layout_constraintTop_toTopOf="@+id/book_image"
+            app:layout_constraintStart_toEndOf="@+id/search_book_image"
+            app:layout_constraintTop_toTopOf="@+id/search_book_image"
             app:layout_constraintVertical_bias="0.16000003" />
 
         <TextView
-            android:id="@+id/book_subtitle"
-            style="@style/textStyleMedium"
+            android:id="@+id/search_book_subtitle"
+            style="@style/textStyleSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:textColor="@color/secondary_text"
             android:ellipsize="end"
             android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/book_image"
-            app:layout_constraintTop_toBottomOf="@+id/book_title"
-            android:text="A One-act Play" />
+            app:layout_constraintStart_toEndOf="@+id/search_book_image"
+            app:layout_constraintTop_toBottomOf="@+id/search_book_title"
+            tools:text="A One-act Play" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
