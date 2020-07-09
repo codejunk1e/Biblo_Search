@@ -2,10 +2,9 @@
 
 
 <p align="center">
-  <img src="" width="200">
-  <img src="" width="200">
-  <img src="" width="200">
-  <img src="" width="200">
+  <img src="https://github.com/codejunk1e/Biblo_Search/blob/master/screenshots/widget.png" width="200">
+  <img src="https://github.com/codejunk1e/Biblo_Search/blob/master/screenshots/home.png" width="200">
+  <img src="https://github.com/codejunk1e/Biblo_Search/blob/master/screenshots/details.png" width="200">
 </p>
 
 My Udacity Capstone Stage 2 task
