@@ -102,6 +102,7 @@ public class VolumeInfo implements Parcelable {
     @SerializedName("subtitle")
     @Expose
     private String subtitle;
+
     public final static Parcelable.Creator<VolumeInfo> CREATOR = new Creator<VolumeInfo>() {
 
 

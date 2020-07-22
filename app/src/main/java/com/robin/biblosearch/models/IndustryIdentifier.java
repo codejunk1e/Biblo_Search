@@ -15,6 +15,7 @@ public class IndustryIdentifier implements Parcelable
     @SerializedName("identifier")
     @Expose
     private String identifier;
+
     public final static Parcelable.Creator<IndustryIdentifier> CREATOR = new Creator<IndustryIdentifier>() {
 
 
