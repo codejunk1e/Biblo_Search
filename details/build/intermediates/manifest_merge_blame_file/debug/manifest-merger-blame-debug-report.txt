@@ -1,0 +1,32 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.robin.details"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/home/kemosabe_x/Desktop/Projects/Android/BibloSearch/details/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/home/kemosabe_x/Desktop/Projects/Android/BibloSearch/details/src/main/AndroidManifest.xml
+10
+11    <application
+11-->/home/kemosabe_x/Desktop/Projects/Android/BibloSearch/details/src/main/AndroidManifest.xml:5:5-11:52
+12        android:allowBackup="true"
+12-->/home/kemosabe_x/Desktop/Projects/Android/BibloSearch/details/src/main/AndroidManifest.xml:6:9-35
+13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+13-->[androidx.core:core:1.1.0] /home/kemosabe_x/.gradle/caches/transforms-2/files-2.1/cb624fb71870dff228cebab3459516a9/core-1.1.0/AndroidManifest.xml:24:18-86
+14        android:debuggable="true"
+15        android:icon="@mipmap/ic_launcher"
+15-->/home/kemosabe_x/Desktop/Projects/Android/BibloSearch/details/src/main/AndroidManifest.xml:7:9-43
+16        android:label="@string/app_name"
+16-->/home/kemosabe_x/Desktop/Projects/Android/BibloSearch/details/src/main/AndroidManifest.xml:8:9-41
+17        android:roundIcon="@mipmap/ic_launcher_round"
+17-->/home/kemosabe_x/Desktop/Projects/Android/BibloSearch/details/src/main/AndroidManifest.xml:9:9-54
+18        android:supportsRtl="true"
+18-->/home/kemosabe_x/Desktop/Projects/Android/BibloSearch/details/src/main/AndroidManifest.xml:10:9-35
+19        android:testOnly="true"
+20        android:theme="@style/Theme.BibloSearch" />
+20-->/home/kemosabe_x/Desktop/Projects/Android/BibloSearch/details/src/main/AndroidManifest.xml:11:9-49
+21
+22</manifest>
