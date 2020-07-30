@@ -43,11 +43,6 @@ public class MainActivity extends AppCompatActivity implements TruncatedVolumeAd
     AdView mAdView;
 
 
-    @Override
-    protected void onResume() {
-        getFavouritesAndRecents();
-        super.onResume();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements TruncatedVolumeAd
         emptyFavesTextView = findViewById(R.id.empty_favs);
         emptyRecentsTextView = findViewById(R.id.empty_recents);
         recentsFavouritesViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(RecentsFavouritesViewModel.class);
+        getFavouritesAndRecents();
         setUpAds();
     }
 
