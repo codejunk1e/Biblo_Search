@@ -8,15 +8,23 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.robin.biblosearch.datasource.Repository;
 import com.robin.biblosearch.models.Item;
 import com.robin.biblosearch.models.SearchResponse;
+import com.robin.biblosearch.utils.RxResult;
 
 import java.util.List;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,7 +32,6 @@ import retrofit2.Response;
 public class SearchActivityViewModel extends AndroidViewModel {
     Repository repository;
     private static final String TAG = SearchActivityViewModel.class.getSimpleName();
-    private MutableLiveData<List<Item>> mItems;
 
     public SearchActivityViewModel(@NonNull Application application) {
         super(application);
@@ -32,38 +39,17 @@ public class SearchActivityViewModel extends AndroidViewModel {
     }
 
 
-    public AsyncTask<String, Void, Void> getSearchResult(String keywords){
-        mItems = new MutableLiveData();
-
-        @SuppressLint("StaticFieldLeak")
-        class FetchBooks extends AsyncTask<String, Void, Void> {
-
-            @Override
-            protected Void doInBackground(String... strings) {
-                repository.getSearchResults(keywords).enqueue(
-                        new Callback<SearchResponse>() {
-                            @Override
-                            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
-                                mItems.postValue(response.body().getItems());
-                            }
-
-                            @Override
-                            public void onFailure(Call<SearchResponse> call, Throwable t) {
-                                mItems= null;
-                                Log.e(TAG, t.getMessage());
-                            }
-                        }
-                );
-                return  null;
-            }
-        }
-
-        return new FetchBooks().execute(keywords);
-    }
-
-    public MutableLiveData<List<Item>> getItems() {
-        return mItems;
-    }
+    public LiveData<RxResult<List<Item>>>  getSearchResult(String keywords){
+        return LiveDataReactiveStreams.fromPublisher(
+                repository.getSearchResults(keywords)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .map(SearchResponse::getItems)
+                        .map(RxResult::success)
+                        .onErrorReturn(RxResult::error)
+                        .toFlowable(BackpressureStrategy.MISSING)
+        );
+    };
 }
 
 

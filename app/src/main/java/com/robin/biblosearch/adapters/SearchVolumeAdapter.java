@@ -65,7 +65,7 @@ public class SearchVolumeAdapter extends RecyclerView.Adapter<SearchVolumeAdapte
         public void bind(Item item, int position) {
             if (item.getVolumeInfo().getImageLinks() != null) {
                 Glide.with(context)
-                        .load(item.getVolumeInfo().getImageLinks().getThumbnail())
+                        .load(item.getVolumeInfo().getImageLinks().getSmallThumbnail())
                         .override(128,192)
                         .error(R.drawable.default_image)
                         .into(bookImage);

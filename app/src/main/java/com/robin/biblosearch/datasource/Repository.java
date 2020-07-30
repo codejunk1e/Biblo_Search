@@ -10,9 +10,11 @@ import com.robin.biblosearch.datasource.remote.ApiService;
 import com.robin.biblosearch.models.SearchResponse;
 import com.robin.biblosearch.models.VolumeInfo;
 import com.robin.biblosearch.utils.AppExecutors;
+import com.robin.biblosearch.utils.RxResult;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 
 public class Repository {
@@ -21,7 +23,7 @@ public class Repository {
     private final Database database;
 
 
-    public Call<SearchResponse> getSearchResults(String keywords){
+    public Observable<SearchResponse> getSearchResults(String keywords){
         return apiEndpoints.searchBooks(keywords);
     }
 
