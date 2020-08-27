@@ -14,7 +14,7 @@ import com.robin.biblosearch.models.VolumeInfo;
 public abstract class Database extends RoomDatabase {
     private static final Object LOCK = new Object();
     private static final String DATABASE_NAME = "bookDatabase";
-    private static Database sInstance;
+    private static volatile Database sInstance;
 
     public static Database getInstance(Context context) {
         if (sInstance == null) {

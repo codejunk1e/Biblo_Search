@@ -14,6 +14,7 @@ import com.robin.biblosearch.utils.RxResult;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.Call;
 

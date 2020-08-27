@@ -15,7 +15,8 @@ import com.robin.biblosearch.models.VolumeInfo;
 
 import java.util.List;
 
-import static com.robin.biblosearch.views.SearchActivity.BOOK_EXTRA_KEY;
+import static com.robin.biblosearch.views.MainActivity.BOOK_EXTRA_KEY;
+
 
 public class GridWidgetService extends RemoteViewsService {
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ShareCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -33,7 +34,8 @@ import com.robin.biblosearch.widget.FavBookService;
 
 import java.util.Date;
 
-import static com.robin.biblosearch.views.SearchActivity.BOOK_EXTRA_KEY;
+import static com.robin.biblosearch.views.MainActivity.BOOK_EXTRA_KEY;
+
 
 public class BookDetailsActivity extends AppCompatActivity {
     private VolumeInfo item;
@@ -136,11 +138,9 @@ public class BookDetailsActivity extends AppCompatActivity {
     }
 
     public void openWebPage(String url) {
-        Uri webpage = Uri.parse(url);
-        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+        CustomTabsIntent customTabsIntent = builder.build();
+        customTabsIntent.launchUrl(this, Uri.parse(url));
     }
 
     public void shareBook() {

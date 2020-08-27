@@ -60,23 +60,21 @@ public class SearchActivity extends AppCompatActivity implements SearchVolumeAda
 
 
         getSearch(getIntent().getStringExtra(INTENT_SEARCH_KEY));
-        searchVolumeAdapter= new SearchVolumeAdapter(items, this, this);
+        searchVolumeAdapter= new SearchVolumeAdapter(this, this);
         recyclerView.setAdapter(searchVolumeAdapter);
     }
-/*
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu, menu);
-        return true;
-    }
-
-*/
+    /*
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenuInflater().inflate(R.menu.search_menu, menu);
+            return true;
+        }
+    */
     public void getSearch(String keyword){
         mViewModel.getSearchResult(keyword).observe(this, rxResult ->{
             if (rxResult.getResult()!= null && rxResult.getError() == null){
                 this.items = rxResult.getResult();
-                searchVolumeAdapter = new SearchVolumeAdapter(items, this,  this);
+                searchVolumeAdapter = new SearchVolumeAdapter(this,  this);
                 recyclerView.setAdapter(searchVolumeAdapter);
                 Log.e(TAG, items.toString());
                 progressBar.setVisibility(View.INVISIBLE);
@@ -103,4 +101,3 @@ public class SearchActivity extends AppCompatActivity implements SearchVolumeAda
 
     }
 }
-

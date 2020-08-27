@@ -20,8 +20,8 @@ import com.robin.biblosearch.viewmodels.RecentsFavouritesViewModel;
 
 import java.util.List;
 
+import static com.robin.biblosearch.views.MainActivity.BOOK_EXTRA_KEY;
 import static com.robin.biblosearch.views.MainActivity.INTENT_KEY;
-import static com.robin.biblosearch.views.SearchActivity.BOOK_EXTRA_KEY;
 
 public class RecentsFavouritesActivity extends AppCompatActivity implements VolumeAdapter.OncClickLister {
     private String EXTRA_VALUE;

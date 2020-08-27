@@ -1,6 +1,7 @@
 package com.robin.biblosearch.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.robin.biblosearch.R;
 import com.robin.biblosearch.models.VolumeInfo;
+import com.robin.biblosearch.views.BookDetailsActivity;
 
 import java.util.List;
+
+import static com.robin.biblosearch.views.MainActivity.BOOK_EXTRA_KEY;
+
 
 public class TruncatedVolumeAdapter extends RecyclerView.Adapter<TruncatedVolumeAdapter.ViewHolder> {
     private final Context context;
     private List<VolumeInfo> items;
-    private OncClickLister clickLister;
 
-    public TruncatedVolumeAdapter(List<VolumeInfo> items, Context context, OncClickLister clickLister) {
+    public TruncatedVolumeAdapter(List<VolumeInfo> items, Context context) {
         this.items = items;
         this.context = context;
-        this.clickLister = clickLister;
     }
 
     @NonNull
@@ -77,17 +80,11 @@ public class TruncatedVolumeAdapter extends RecyclerView.Adapter<TruncatedVolume
 
             bookTitle.setText(item.getTitle());
             itemView.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            clickLister.onClickVolumeItem(position);
-                        }
-                    }
+                    v -> {
+                        Intent intent = new Intent(context, BookDetailsActivity.class);
+                        intent.putExtra(BOOK_EXTRA_KEY, items.get(position));
+                        context.startActivity(intent);                        }
             );
         }
-    }
-
-    public interface OncClickLister{
-        public void onClickVolumeItem(int position);
     }
 }

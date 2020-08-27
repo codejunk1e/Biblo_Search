@@ -6,12 +6,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BibloSearch">
+        android:theme="@style/Theme.BibloSearch"
+        android:autoRevokePermissions="allowed"
+        tools:targetApi="30">
 
         <meta-data
             tools:replace="android:value"
@@ -37,15 +40,16 @@
             android:name=".widget.GridWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <activity android:name=".views.SearchActivity" android:parentActivityName=".views.MainActivity"/>
         <activity android:name=".views.BookDetailsActivity" />
         <activity android:name=".views.RecentsFavouritesActivity" android:parentActivityName=".views.MainActivity"/>
-        <activity android:name=".views.MainActivity">
+        <activity android:name=".views.MainActivity"
+            android:theme="@style/Theme.BibloSearch.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

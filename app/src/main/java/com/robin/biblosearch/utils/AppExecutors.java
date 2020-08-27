@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 public class AppExecutors {
 
     private static final Object LOCK = new Object();
-    private static AppExecutors sInstance;
+    private static volatile AppExecutors sInstance;
     private final Executor diskIO;
     private final Executor mainThread;
     private final Executor networkIO;

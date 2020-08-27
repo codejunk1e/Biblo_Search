@@ -4,6 +4,7 @@
     <string name="favourites">Favourites</string>
     <string name="more">More</string>
     <string name="search">Search</string>
+    <string name="search_books">Search any books</string>
     <string name="settings">Settings</string>
     <string name="no_recents_yet">No recents yet! \n Search any books now!</string>
     <string name="no_favourites_yet">No favourites yet! \n Star any books you love now!</string>

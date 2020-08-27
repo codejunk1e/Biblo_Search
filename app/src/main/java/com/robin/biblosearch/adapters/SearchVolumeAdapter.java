@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.AsyncDifferConfig;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,16 +20,29 @@ import com.robin.biblosearch.models.VolumeInfo;
 
 import java.util.List;
 
-public class SearchVolumeAdapter extends RecyclerView.Adapter<SearchVolumeAdapter.ViewHolder> {
+public class SearchVolumeAdapter extends ListAdapter<Item, SearchVolumeAdapter.ViewHolder>{
     private final Context context;
-    private List<Item> items;
     private OncClickLister lister;
 
-    public SearchVolumeAdapter(List<Item> items, Context context, OncClickLister lister) {
-        this.items = items;
-        this.context = context;
+    public SearchVolumeAdapter(Context context, OncClickLister lister) {
+        super(DIFF_CALLBACK);
         this.lister = lister;
+        this.context = context;
     }
+
+    private static final DiffUtil.ItemCallback<Item> DIFF_CALLBACK = new DiffUtil.ItemCallback<Item>() {
+        @Override
+        public boolean areItemsTheSame(Item oldItem, Item newItem) {
+            return oldItem.getId().equals(newItem.getId());
+        }
+
+        @Override
+        public boolean areContentsTheSame(Item oldItem, Item newItem) {
+            return oldItem.getVolumeInfo().getTitle().equals(newItem.getVolumeInfo().getTitle());
+        }
+    };
+
+
 
     @NonNull
     @Override
@@ -37,16 +53,16 @@ public class SearchVolumeAdapter extends RecyclerView.Adapter<SearchVolumeAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Item item = items.get(position);
+        Item item = getItem(position);
         holder.bind(item, position);
     }
 
     @Override
     public int getItemCount() {
-        if (items == null) {
+        if (getCurrentList() == null) {
             return 0;
         }
-        return items.size();
+        return getCurrentList().size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -80,5 +96,9 @@ public class SearchVolumeAdapter extends RecyclerView.Adapter<SearchVolumeAdapte
     }
     public interface OncClickLister{
         public void onClickSearchItem(int position);
+    }
+
+    public void updateList(List<Item>  list){
+        submitList(list);
     }
 }
