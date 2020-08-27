@@ -79,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
         emptyFavesTextView = findViewById(R.id.empty_favs);
         emptyRecentsTextView = findViewById(R.id.empty_recents);
         recentsFavouritesViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(RecentsFavouritesViewModel.class);
+        favVolumeAdapter = new TruncatedVolumeAdapter(null, this);
+        favouritesRecyclerView.setAdapter(favVolumeAdapter);
+        recentVolumeAdapter = new TruncatedVolumeAdapter(null, this);
+        recentsRecyclerView.setAdapter(recentVolumeAdapter);
         searchVolumeAdapter= new SearchVolumeAdapter(MainActivity.this, position -> {
 
             Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
@@ -187,11 +191,9 @@ public class MainActivity extends AppCompatActivity {
         recentsFavouritesViewModel.getAllFavourites().observe(this, volumeInfos -> {
 
             if(volumeInfos.isEmpty()){
-                favouritesRecyclerView.setVisibility(View.GONE);
-                emptyFavesTextView.setVisibility(View.VISIBLE);
+                toggleVisibility(favouritesRecyclerView, emptyFavesTextView);
             }else{
-                favVolumeAdapter = new TruncatedVolumeAdapter(volumeInfos, this);
-                favouritesRecyclerView.setAdapter(favVolumeAdapter);
+                favVolumeAdapter.update(volumeInfos);
             }
         });
     }
@@ -199,14 +201,18 @@ public class MainActivity extends AppCompatActivity {
     private void getRecents() {
         recentsFavouritesViewModel.getAllRecents().observe(this, volumeInfos -> {
             if(volumeInfos.isEmpty()){
-                recentsRecyclerView.setVisibility(View.GONE);
-                emptyRecentsTextView.setVisibility(View.VISIBLE);
+                toggleVisibility(recentsRecyclerView, emptyRecentsTextView);
             }else{
-                recentVolumeAdapter = new TruncatedVolumeAdapter(volumeInfos, this);
-                recentsRecyclerView.setAdapter(recentVolumeAdapter);
+                recentVolumeAdapter.update(volumeInfos);
             }
         });
     }
+
+    private void toggleVisibility(RecyclerView recyclerView,  TextView textView) {
+        recyclerView.setVisibility(View.GONE);
+        textView.setVisibility(View.VISIBLE);
+    }
+
     private void closeKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
