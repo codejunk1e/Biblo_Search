@@ -7,9 +7,9 @@ Biblio search roughly translates to book search. It is an app that allows book l
 
 
 <p align="center">
-  <img src="https://github.com/codejunk1e/Biblo_Search/blob/master/screenshots/widget.png" width="200">
-  <img src="https://github.com/codejunk1e/Biblo_Search/blob/master/screenshots/home.png" width="200">
-  <img src="https://github.com/codejunk1e/Biblo_Search/blob/master/screenshots/details.png" width="200">
+  <img src="https://github.com/codejunk1e/Biblo_Search/blob/master/screenshots/search.jpg" width="200">
+  <img src="https://github.com/codejunk1e/Biblo_Search/blob/master/screenshots/details.jpg" width="200">
+  <img src="https://github.com/codejunk1e/Biblo_Search/blob/master/screenshots/book_preview.jpg" width="200">
 </p>
 
 
