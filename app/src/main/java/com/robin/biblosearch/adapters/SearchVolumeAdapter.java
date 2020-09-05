@@ -95,7 +95,7 @@ public class SearchVolumeAdapter extends ListAdapter<Item, SearchVolumeAdapter.V
         }
     }
     public interface OncClickLister{
-        public void onClickSearchItem(int position);
+        void onClickSearchItem(int position);
     }
 
     public void updateList(List<Item>  list){

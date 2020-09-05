@@ -12,7 +12,7 @@
 
     <ImageView
         android:id="@+id/recents_fav_book_image"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="192dp"
         android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
@@ -26,17 +26,17 @@
 
     <TextView
         android:id="@+id/recents_fav_book_title"
-        style="@style/textStyleSmall"
+        style="@style/textStyleMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:maxLines="6"
+        android:layout_marginTop="16dp"
         android:gravity="center"
-        android:textStyle="bold"
-        android:text="Harry Potter and the Sorcerer's Stone"
+        android:maxLines="6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recents_fav_book_image"
         app:layout_constraintStart_toStartOf="@+id/recents_fav_book_image"
         app:layout_constraintTop_toBottomOf="@+id/recents_fav_book_image"
-        app:layout_constraintVertical_bias="0.100000024" />
+        app:layout_constraintVertical_bias="0.100000024"
+        tools:text="Harry Potter and the Sorcerer's Stone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,21 +2,16 @@ package com.robin.biblosearch.views;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,15 +21,12 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.lapism.search.internal.SearchLayout;
 import com.lapism.search.widget.MaterialSearchView;
 import com.robin.biblosearch.R;
 import com.robin.biblosearch.adapters.SearchVolumeAdapter;
 import com.robin.biblosearch.adapters.TruncatedVolumeAdapter;
 import com.robin.biblosearch.models.Item;
-import com.robin.biblosearch.models.SearchResponse;
 import com.robin.biblosearch.models.VolumeInfo;
 import com.robin.biblosearch.viewmodels.RecentsFavouritesViewModel;
 
@@ -74,23 +66,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         intent = new Intent(this, RecentsFavouritesActivity.class);
+
         recentsRecyclerView = findViewById(R.id.recyclerView_recents);
+        recentVolumeAdapter = new TruncatedVolumeAdapter(null, this);
+        recentsRecyclerView.setAdapter(recentVolumeAdapter);
+
         favouritesRecyclerView = findViewById(R.id.recyclerView_favourites);
+        favVolumeAdapter = new TruncatedVolumeAdapter(null, this);
+        favouritesRecyclerView.setAdapter(favVolumeAdapter);
+
         emptyFavesTextView = findViewById(R.id.empty_favs);
         emptyRecentsTextView = findViewById(R.id.empty_recents);
         recentsFavouritesViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(RecentsFavouritesViewModel.class);
-        favVolumeAdapter = new TruncatedVolumeAdapter(null, this);
-        favouritesRecyclerView.setAdapter(favVolumeAdapter);
-        recentVolumeAdapter = new TruncatedVolumeAdapter(null, this);
-        recentsRecyclerView.setAdapter(recentVolumeAdapter);
-        searchVolumeAdapter= new SearchVolumeAdapter(MainActivity.this, position -> {
 
+
+        searchVolumeAdapter= new SearchVolumeAdapter(MainActivity.this, position -> {
             Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
             VolumeInfo volumeInfo = items.get(position).getVolumeInfo();
             volumeInfo.setId(items.get(position).getId());
             if (items.get(position).getVolumeInfo().getImageLinks() != null) {
                 volumeInfo.setThumbnail(items.get(position).getVolumeInfo().getImageLinks().getThumbnail());
             }
+
             Log.e(TAG, String.valueOf(new Date()));
             intent.putExtra(BOOK_EXTRA_KEY, volumeInfo);
             startActivity(intent);
@@ -99,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         getFavouritesAndRecents();
         setUpAds();
         setUpSearchView();
+        enableStrictMode();
     }
 
     private void setUpSearchView() {
@@ -220,4 +218,15 @@ public class MainActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
+    private void enableStrictMode() {
+        StrictMode.ThreadPolicy strictMode = new StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .penaltyDialog()
+                .build();
+        StrictMode.setThreadPolicy(strictMode);
+    }
+
+
 }

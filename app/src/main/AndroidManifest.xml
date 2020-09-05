@@ -40,7 +40,7 @@
             android:name=".widget.GridWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <activity android:name=".views.BookDetailsActivity" />
+        <activity android:name=".views.BookDetailsActivity" android:launchMode="singleTop"/>
         <activity android:name=".views.RecentsFavouritesActivity" android:parentActivityName=".views.MainActivity"/>
         <activity android:name=".views.MainActivity"
             android:theme="@style/Theme.BibloSearch.MainActivity">

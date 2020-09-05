@@ -90,5 +90,6 @@ public class TruncatedVolumeAdapter extends RecyclerView.Adapter<TruncatedVolume
 
     public void update(List<VolumeInfo> items){
         this.items = items;
+        notifyDataSetChanged();
     }
 }

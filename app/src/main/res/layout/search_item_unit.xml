@@ -8,7 +8,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,21 +16,20 @@
 
         <ImageView
             android:id="@+id/search_book_image"
-            android:layout_width="128dp"
-            android:layout_height="192dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/book_image_cover"
-            android:src="@drawable/harry_potter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.071"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/harry_potter" />
 
         <TextView
             android:id="@+id/search_book_title"
-            style="@style/textStyleMedium"
+            style="@style/textStyleSearchBold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -39,7 +37,6 @@
             android:textStyle="normal"
             android:fontFamily="sans-serif-medium"
             android:maxLines="4"
-            android:textColor="@color/primary_text"
             tools:text="Harry Potter and the Sorcerer's Stone"
             app:layout_constraintBottom_toBottomOf="@+id/search_book_image"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +52,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:textColor="@color/secondary_text"
             android:ellipsize="end"
             android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"

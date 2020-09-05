@@ -1,4 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+
     <!-- Base application theme. -->
     <style name="Theme.BibloSearch" parent="Theme.MaterialComponents.DayNight">
 
@@ -6,7 +8,6 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary_dark</item>
         <item name="colorOnPrimary">@color/white</item>
-
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/primary</item>
@@ -16,7 +17,6 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
-
 
         <!-- Customize your theme here. -->
         <item name="android:colorAccent">@color/accent</item>
@@ -33,6 +33,13 @@
     </style>
 
 
+
+
+
+
+
+
+
     <style name="Theme.BibloSearch.MainActivity" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- Primary brand color. -->
@@ -46,10 +53,8 @@
         <item name="colorSecondaryVariant">@color/primary_dark</item>
         <item name="colorOnSecondary">@color/black</item>
 
-
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
-
 
         <!-- Customize your theme here. -->
         <item name="android:colorAccent">@color/accent</item>
@@ -59,5 +64,4 @@
         <item name="android:divider">@color/divider</item>
 
     </style>
-
 </resources>
