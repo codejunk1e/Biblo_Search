@@ -54,11 +54,7 @@ public class TruncatedVolumeAdapter extends RecyclerView.Adapter<TruncatedVolume
             return 0;
         }
 
-        if (items.size() < 4){
-            return items.size();
-        }else {
-            return 4;
-        }
+        return Math.min(items.size(), 6);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

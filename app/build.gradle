@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'kotlin-android'
 }
 
 android {
@@ -43,6 +44,8 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation project(path: ':search')
     def room_version = "2.2.5"
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -87,9 +90,12 @@ dependencies {
     // LiveDataReactiveStreams dependency
     implementation "androidx.lifecycle:lifecycle-reactivestreams:2.2.0"
 
-    // Search dependency
-    implementation 'com.lapism:search:2.2.0@aar'
-
     // Browser dependency
     implementation "androidx.browser:browser:1.2.0"
+
+    // Lottie dependency
+    implementation "com.airbnb.android:lottie:3.4.2"
+
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+
 }

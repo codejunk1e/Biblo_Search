@@ -5,14 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:gravity="center"
     android:padding="5dp"
     android:layout_gravity="center">
 
     <ImageView
         android:id="@+id/recents_fav_book_image"
-        android:layout_width="0dp"
+        android:layout_width="120dp"
         android:layout_height="192dp"
         android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
@@ -27,11 +26,12 @@
     <TextView
         android:id="@+id/recents_fav_book_title"
         style="@style/textStyleMedium"
+        android:textSize="12sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:maxLines="6"
+        android:layout_marginTop="4dp"
+        android:maxLines="2"
+        android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recents_fav_book_image"
         app:layout_constraintStart_toStartOf="@+id/recents_fav_book_image"

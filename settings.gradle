@@ -1,2 +1,3 @@
 rootProject.name = "Biblo Search"
 include ':app'
+include ':search'

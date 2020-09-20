@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,48 +23,59 @@
             app:layout_constraintTop_toTopOf="parent">
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_recents"
-                    style="@style/textStyleMedium"
-                    android:textSize="12sp"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:orientation="horizontal"
                     android:layout_marginTop="24dp"
-                    android:text="@string/recents"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    style="@style/textStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:onClick="openRecents"
-                    android:text="@string/more"
-                    android:textColor="@android:color/holo_red_dark"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_recents"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toEndOf="@+id/tv_recents"
-                    app:layout_constraintTop_toTopOf="@+id/tv_recents" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/tv_recents"
+                        style="@style/textStyleBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="9"
+                        android:text="@string/recents"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_forward"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/forward_pointing_arrow">
+                    </ImageView>
+
+                </LinearLayout>
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_recents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    tools:listitem="@layout/item_unit"
                     android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2"
-                    tools:itemCount="4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_recents" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_recents"
+                    app:spanCount="3"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/item_unit" />
 
 
                 <TextView
@@ -73,52 +83,56 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="24dp"
-                    android:visibility="gone"
                     android:gravity="center"
                     android:text="@string/no_recents_yet"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@+id/tv_recents" />
 
-
-                <TextView
-                    android:id="@+id/tv_favourites"
-                    style="@style/textStyleMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="60dp"
-                    android:text="@string/favourites"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerView_recents"
-                    app:layout_goneMarginTop="100dp" />
-
-
-                <TextView
-                    style="@style/textStyleSmall"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="openFavourites"
-                    android:text="@string/more"
-                    android:textColor="@android:color/holo_red_dark"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_favourites"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.95"
-                    app:layout_constraintStart_toEndOf="@+id/tv_favourites"
-                    app:layout_constraintTop_toTopOf="@+id/tv_favourites" />
+                    android:layout_marginTop="24dp"
+                    android:clickable="true"
+                    android:orientation="horizontal"
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/tv_favourites"
+                        style="@style/textStyleBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="9"
+                        android:text="@string/favourites"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/recyclerView_recents"
+                        app:layout_goneMarginTop="100dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_forward"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/forward_pointing_arrow">
+                    </ImageView>
+
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView_favourites"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    tools:listitem="@layout/item_unit"
                     android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2"
-                    tools:itemCount="4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_favourites" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_favourites"
+                    app:spanCount="3"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/item_unit" />
 
                 <TextView
                     android:id="@+id/empty_favs"
@@ -126,13 +140,13 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="24dp"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:text="@string/no_favourites_yet"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_favourites" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.gms.ads.AdView
@@ -140,23 +154,21 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@android:color/transparent"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/nestedScrollView"
-            app:layout_constraintVertical_bias="1.0"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id"/>
-
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.lapism.search.widget.MaterialSearchView
+    <com.robin.search.widget.MaterialSearchView
         android:id="@+id/material_search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
